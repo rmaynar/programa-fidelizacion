@@ -19,42 +19,9 @@
 </head>
 
 <body>
-	<!-- Static navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
-		class="navbar-brand" href="#">Navbar</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/inicio">Inicio
-					<span class="sr-only">(current)</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/ofertas/listado">Ofertas</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> Dropdown </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Action</a> <a
-						class="dropdown-item" href="#">Another action</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div></li>
-			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
-			</li>
-		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+	<div id="header">
+		<%@ include file="header.jspf"%>
 	</div>
-	</nav>
 
 
 	<div class="container">
@@ -62,7 +29,8 @@
 		<!-- Main component for a primary marketing message or call to action -->
 		<div class="jumbotron">
 			<h1>Programa de fidelización</h1>
-			<p>Desde esta página puede consultar sus puntos acumulados y acceder al listado de ofertas</p>
+			<p>Desde esta página puede consultar sus puntos acumulados y
+				acceder al listado de ofertas</p>
 			<p>Acceda al listado de ofertas</p>
 			<p>
 				<a class="btn btn-lg btn-primary" href="ofertas/listado"
@@ -75,29 +43,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-4 col-md-4">
-			<button id="consultarPuntos" type="button" class="btn btn-primary">Consultar
+				<button id="consultarPuntos" type="button" class="btn btn-primary">Consultar
 					mis puntos</button>
 			</div>
 			<div class="col-xl-4 col-md-4">
-				<div id="puntos" class="alert alert-primary" style="visibility: hidden;" role="alert"></div>
+				<div id="puntos" class="alert alert-primary"
+					style="visibility: hidden;" role="alert"></div>
 			</div>
-			<div class="col-xl-4 col-md-4">
-				
-			</div>
+			<div class="col-xl-4 col-md-4"></div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-2.2.4.js"
-		integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	<script src="<c:url value="/js/acciones.js" />"></script>
+	<div id="footer">
+		<%@ include file="footer.jspf"%>
+	</div>
+	
 </body>
 </html>
