@@ -29,14 +29,6 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(path="/inicio", method = RequestMethod.GET)
-	public String iniciarMenu(Map<String,Object> model) {
-		/** Esto lo realiza el ConfiguracionControladores
-		//servicio.obtenerGeneros();
-		model.put("genero", new String[] {"Masculino","Femenino"});
-		**/
-		return "login";
-	}
 	
 	@RequestMapping(path="/inicio", method = RequestMethod.POST)
 	public String procesarFormulario(@ModelAttribute UsuarioBean usuario) {

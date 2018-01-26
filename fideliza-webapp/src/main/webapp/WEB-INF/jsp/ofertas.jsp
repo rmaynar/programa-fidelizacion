@@ -17,7 +17,8 @@
 	crossorigin="anonymous">
 <title>Programa fideliza</title>
 </head>
-
+<%@page import="java.util.*"%>
+<%@page import="com.maynar.fideliza.bom.Oferta"%>
 <body>
 	<!-- Static navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
@@ -56,34 +57,18 @@
 	</div>
 	</nav>
 
-
-	<div class="container">
-
-		<!-- Main component for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>Programa de fidelización</h1>
-			<p>Desde esta página puede consultar sus puntos acumulados y acceder al listado de ofertas</p>
-			<p>Acceda al listado de ofertas</p>
-			<p>
-				<a class="btn btn-lg btn-primary" href="ofertas/listado"
-					role="button">Ver ofertas del mes &raquo;</a>
-			</p>
-		</div>
-
-	</div>
 	<!-- /container -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-4 col-md-4">
-			<button id="consultarPuntos" type="button" class="btn btn-primary">Consultar
-					mis puntos</button>
-			</div>
-			<div class="col-xl-4 col-md-4">
-				<div id="puntos" class="alert alert-primary" style="visibility: hidden;" role="alert"></div>
-			</div>
-			<div class="col-xl-4 col-md-4">
-				
-			</div>
+			<div class="col-xl-4 col-md-4">Ofertas</div>
+		</div>
+		<div class="row">
+			<ul>
+				<c:forEach items="${ofertas}" var="oferta">
+					<li><c:out value="${oferta.descripcion}"></c:out></li>
+				</c:forEach>
+			</ul>
+
 		</div>
 	</div>
 
