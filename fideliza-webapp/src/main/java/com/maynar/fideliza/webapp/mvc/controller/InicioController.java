@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
@@ -20,13 +21,13 @@ public class InicioController {
 	private View listadoOfertas;
 	
 	@RequestMapping(path="/ofertas/listado", method = RequestMethod.GET)
-	public String  listarOfertas(Map<String,Object> model) {
+	public String  listarOfertas(Model model) {
 		/** Esto lo realiza el ConfiguracionControladores
 		//servicio.obtenerGeneros();
 		model.put("genero", new String[] {"Masculino","Femenino"});
 		**/
-		model.put("ofertas", new String[] {"Oferta1","Oferta2","Oferta3"});
-//		model.addObject("ofertas", ofertasService.consultarTodas());
+//		model.addAttribute("lasofertas", new String[] {"Oferta1","Oferta2","Oferta3"});
+		model.addAttribute("ofertas", ofertasService.consultarTodas());
 //		model.put("ofertas", ofertasService.consultarTodas());
 		return "ofertas";
 	}
