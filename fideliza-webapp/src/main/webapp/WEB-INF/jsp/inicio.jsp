@@ -15,27 +15,84 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<!-- Custom styles for this template -->
-<link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>Programa fideliza</title>
 </head>
 
-<body class="text-center">
-	
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">Hello, world!</h1>
-			<p>Bienvenido a la página de inicio</p>
+<body>
+	<!-- Static navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
+		class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="#">Home
+					<span class="sr-only">(current)</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> Dropdown </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a> <a
+						class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div></li>
+			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search"
+				placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>
+	</nav>
+
+
+	<div class="container">
+
+		<!-- Main component for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<h1>Navbar example</h1>
+			<p>This example is a quick exercise to illustrate how the
+				default, static and fixed to top navbar work. It includes the
+				responsive CSS and HTML, so it also adapts to your viewport and
+				device.</p>
+			<p>To see the difference between static and fixed top navbars,
+				just scroll.</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="#" role="button">Learn
-					more &raquo;</a>
+				<a class="btn btn-lg btn-primary" href="../../components/#navbar"
+					role="button">View navbar docs &raquo;</a>
 			</p>
 		</div>
+
 	</div>
-	
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	<!-- /container -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-4 col-md-4">
+			<button id="consultarPuntos" type="button" class="btn btn-primary">Consultar
+					mis puntos</button>
+			</div>
+			<div class="col-xl-4 col-md-4">
+				<div id="puntos" class="alert alert-primary" style="visibility: hidden;" role="alert"></div>
+			</div>
+			<div class="col-xl-4 col-md-4">
+				
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.4.js"
+		integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
 		crossorigin="anonymous"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -45,5 +102,6 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+	<script src="<c:url value="/js/acciones.js" />"></script>
 </body>
 </html>
