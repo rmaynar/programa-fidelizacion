@@ -3,6 +3,10 @@ package com.maynar.fideliza.webapp.mvc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.authentication.UserCredentials;
+import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.mongodb.MongoClient;
 
 @Configuration
 @EnableWebMvc
@@ -54,5 +60,16 @@ public class ConfiguracionWeb implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("login");
 	}
 	
+	@Bean
+    public MongoDbFactory mongoDbFactory() throws Exception {
+        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        return new SimpleMongoDbFactory(mongoClient, "fidelizaDB");
+    }
+ 
+    @Bean
+    public MongoTemplate mongoTemplate() throws Exception {
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
+        return mongoTemplate;
+    }
 	
 }

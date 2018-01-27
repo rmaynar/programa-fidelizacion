@@ -2,6 +2,8 @@ package com.maynar.fideliza.webapp.mvc.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -20,24 +22,23 @@ public class LoginController {
 	@Autowired
 	private ILoginService loginService;
 	
+	
 	@RequestMapping(path="/login", method = RequestMethod.GET)
 	public String iniciarFormulario(Map<String,Object> model) {
-		/** Esto lo realiza el ConfiguracionControladores
-		//servicio.obtenerGeneros();
-		model.put("genero", new String[] {"Masculino","Femenino"});
-		**/
 		return "login";
 	}
 	
 	
 	@RequestMapping(path="/inicio", method = RequestMethod.POST)
-	public String procesarFormulario(@ModelAttribute UsuarioBean usuario) {
+	public String procesarFormulario(@ModelAttribute UsuarioBean usuario, HttpServletRequest request) {
 		String returnView = "login";
 		
 		Usuario user = new Usuario(usuario.getUsuario(), usuario.getPassword(), usuario.getEmail());
 		user = loginService.login(user);
 		if(user!=null) {
 			returnView = "inicio";
+			usuario.setUsuario(user.getUsuario());
+			request.getSession().setAttribute("usuario", usuario);
 		}
 		return returnView;
 	}
@@ -49,11 +50,24 @@ public class LoginController {
 	 */
 	@RequestMapping(path="/consultaPuntos", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody public String consultarPuntos() {
-		/** Esto lo realiza el ConfiguracionControladores
-		//servicio.obtenerGeneros();
-		model.put("genero", new String[] {"Masculino","Femenino"});
-		**/
 		return "{\"puntos\":100}";
+	}
+	
+	@RequestMapping(path="/registro", method = RequestMethod.GET)
+	public String iniciarRegistro(Map<String,Object> model) {
+		return "registro";
+	}
+	
+	@RequestMapping(path="/registro", method = RequestMethod.POST)
+	public String procesarRegistro(@ModelAttribute UsuarioBean usuario) {
+		String returnView = "login";
+		
+		Usuario user = new Usuario(usuario.getUsuario(), usuario.getPassword(), usuario.getEmail());
+		user = loginService.register(user);
+		if(user!=null) {
+			returnView = "inicio";
+		}
+		return returnView;
 	}
 	
 }

@@ -1,7 +1,8 @@
 package com.maynar.fideliza.bom;
 
 public class Usuario {
-
+	
+	private String id;
 	private String usuario;
 	private String password;
 	private String email;
@@ -24,6 +25,14 @@ public class Usuario {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setEmail(String email) {

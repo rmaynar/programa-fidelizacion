@@ -2,10 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page import="com.maynar.fideliza.webapp.beans.UsuarioBean" %>
+<%@ page import="com.maynar.fideliza.webapp.beans.UsuarioBean"%>
 <%
-	UsuarioBean user = (UsuarioBean)request.getAttribute("usuario");
-	if (user==null){
+	UsuarioBean user = (UsuarioBean) request.getAttribute("usuario");
+	if (user == null) {
 		user = new UsuarioBean();
 		request.setAttribute("usuario", user);
 	}
@@ -24,23 +24,27 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <!-- Custom styles for this template -->
-<link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
+<link
+	href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css"
+	rel="stylesheet">
 <title>Programa fideliza</title>
 </head>
 
 <body class="text-center">
-	<form:form modelAttribute="usuario" class="form-signin" method="POST" action="inicio">
-	<!--  src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg"-->
+	<form:form modelAttribute="usuario" class="form-signin" method="POST"
+		action="inicio">
+		<!--  src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg"-->
 		<img class="mb-4"
 			src="http://www.wayfindingpro.com/wp-content/uploads/2014/06/iconMembershipClub.svg"
 			alt="">
 		<h1 class="h3 mb-3 font-weight-normal">Inicie sesión</h1>
-		<label for="inputEmail" class="sr-only">Email</label> <form:input
-			type="email" id="inputEmail" path="email" class="form-control"
-			placeholder="Email address" required="true" autofocus="true"/> <label
-			for="inputPassword" class="sr-only">Password</label> <form:input
-			type="password" id="inputPassword" path="password" class="form-control"
-			placeholder="Password" required="true"/>
+		<label for="inputEmail" class="sr-only">Email</label>
+		<form:input type="email" id="inputEmail" path="email"
+			class="form-control" placeholder="Email address" required="true"
+			autofocus="true" />
+		<label for="inputPassword" class="sr-only">Password</label>
+		<form:input type="password" id="inputPassword" path="password"
+			class="form-control" placeholder="Password" required="true" />
 		<div class="checkbox mb-3">
 			<label> <input type="checkbox" value="remember-me">
 				Recordar datos
@@ -48,6 +52,14 @@
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar
 			sesión</button>
+		<div class="form-group">
+			<div class="col-md-12 control">
+				<div
+					style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
+					No tengo cuenta! <a href="registro"> Regístrate aquí </a>
+				</div>
+			</div>
+		</div>
 		<p class="mt-5 mb-3 text-muted">&copy; Raúl Maynar / 2017-2018</p>
 	</form:form>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

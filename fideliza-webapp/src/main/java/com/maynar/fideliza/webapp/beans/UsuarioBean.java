@@ -1,5 +1,7 @@
 package com.maynar.fideliza.webapp.beans;
 
+import org.springframework.context.annotation.Scope;
+
 public class UsuarioBean {
 
 	private String usuario;

@@ -6,5 +6,6 @@ public interface ILoginService {
 
 	public Usuario login(Usuario usuario);
 	public Usuario logout(Usuario usuario);
+	public Usuario register(Usuario usuario);
 	
 }

@@ -22,4 +22,9 @@ public class LoginServiceImpl implements ILoginService{
 		return null;
 	}
 
+	public Usuario register(Usuario usuario) {
+		Usuario user = usuarioDao.crearUsuario(usuario);
+		return null;
+	}
+
 }
