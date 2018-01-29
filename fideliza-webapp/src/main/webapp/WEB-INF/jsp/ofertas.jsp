@@ -26,12 +26,22 @@
 	<!-- /container -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-4 col-md-4">Ofertas</div>
+			<h2>Ofertas</h2>
 		</div>
 		<div class="row">
-			<ul>
+			<br/>
+			<h4>Mis puntos:${puntos}</h4>
+		</div>
+		<div class="row">
+			<ul class="list-group">
 				<c:forEach items="${ofertas}" var="oferta">
-					<li><c:out value="${oferta.descripcion}"></c:out></li>
+					<li class="list-group-item">
+						<c:out value="${oferta.descripcion}"></c:out>
+						<ul class="list-unstyled">
+							<li>Puntos necesarios: <c:out value="${oferta.puntos}"></c:out></li>
+							<li><button class="btn btn-info comprar" value="${oferta.puntos}">Comprar</button></li>
+						</ul>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -48,6 +58,7 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+	<script>var misPuntos = ${puntos};</script>
 	<script src="<c:url value="/js/acciones.js" />"></script>
 </body>
 </html>

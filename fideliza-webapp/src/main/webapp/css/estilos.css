@@ -94,3 +94,10 @@
 .login-help{
   font-size: 12px;
 }
+
+.register-form{
+	margin-left: 5em;
+}
+.registroSelect{
+	margin-top: 5em;
+}

@@ -1,9 +1,8 @@
 package com.maynar.fideliza.webapp.beans;
 
-import org.springframework.context.annotation.Scope;
-
 public class UsuarioBean {
 
+	private String id;
 	private String usuario;
 	private String password;
 	private String email;
@@ -24,6 +23,12 @@ public class UsuarioBean {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

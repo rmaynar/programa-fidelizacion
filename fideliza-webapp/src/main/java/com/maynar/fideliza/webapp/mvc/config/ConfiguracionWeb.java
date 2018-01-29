@@ -63,7 +63,7 @@ public class ConfiguracionWeb implements WebMvcConfigurer {
 	@Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
         MongoClient mongoClient = new MongoClient("localhost", 27017);
-        return new SimpleMongoDbFactory(mongoClient, "fidelizaDB");
+        return new SimpleMongoDbFactory(mongoClient, "fidelizadb");
     }
  
     @Bean

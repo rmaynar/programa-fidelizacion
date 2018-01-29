@@ -11,3 +11,23 @@ $("#consultarPuntos").click(function(){
 		   error:function(exception){alert('Exeption:'+exception);}
 		}); 
 });
+
+$("#operadorradio").click(function(){
+	$("#clienteradio").prop('checked', false);
+	$(".ciff-class").removeClass("d-none");
+});
+
+$("#clienteradio").click(function(){
+	$("#operadorradio").prop('checked', false);
+	$(".ciff-class").addClass("d-none");
+});
+
+$(".comprar").click(function(){
+	if(this.value > misPuntos){
+		alert("No tienes puntos suficientes!");
+	}else{
+		alert("Comprado!");
+
+	}
+	
+});
