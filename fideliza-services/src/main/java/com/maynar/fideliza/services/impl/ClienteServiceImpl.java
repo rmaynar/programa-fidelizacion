@@ -14,17 +14,19 @@ public class ClienteServiceImpl implements IClienteService{
 	private IClienteDao clienteDao;
 	
 	public Cliente registrarCliente(Cliente cliente) {
-		return clienteDao.crearCliente(cliente);
+		return clienteDao.guardarCliente(cliente);
 	}
 
 	public Cliente obtenerCliente(Cliente cliente) {
-		return clienteDao.obtenerCliente(cliente);
+		if(cliente.getId_usuario()!=null && !"".equals(cliente.getId_usuario())){
+			return clienteDao.obtenerCliente(cliente);
+		}
+		return null;
 	}
 
 	public Cliente obtenerCliente(Usuario usuario) {
 		return clienteDao.obtenerClienteUsuario(usuario);
 	}
 
-	
 
 }

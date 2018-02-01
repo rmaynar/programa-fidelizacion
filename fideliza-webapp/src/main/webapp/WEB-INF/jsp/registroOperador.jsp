@@ -29,26 +29,18 @@
 
 <body class="register-form">
 
-	<form:form class="form-horizontal" modelAttribute="usuario"
-		action='registro' method="POST">
+	<form:form class="form-horizontal" modelAttribute="operador"
+		action='registroOperador' method="POST">
 		<fieldset>
 			<div id="legend">
-				<legend class="">Registro de usuario</legend>
-			</div>
-			<div class="control-group">
-				<p>Elija el tipo de cuenta:</p>
-					<label class="radio-inline"> <input type="radio"
-						id="clienteradio" checked="checked">Cliente
-					</label> <label class="radio-inline"> <input type="radio"
-						id="operadorradio">Operador
-					</label> 
+				<legend class="">Registro de operador</legend>
 			</div>
 			<div class="control-group">
 				<!-- Username -->
 				<label class="control-label" for="username">Nombre de
 					usuario</label>
 				<div class="controls">
-					<form:input type="text" id="username" name="usuario" path="usuario"
+					<form:input type="text" id="username" name="usuario" path="datosUsuario.usuario"
 						placeholder="Nombre de usuario" class="input-xlarge" required="true" />
 					<p class="help-block text-muted">El nombre de usuario puede contener
 						letras y números sin espacios</p>
@@ -59,7 +51,7 @@
 				<!-- E-mail -->
 				<label class="control-label" for="email">E-mail</label>
 				<div class="controls">
-					<form:input type="text" id="email" name="email" path="email"
+					<form:input type="text" id="email" name="email" path="datosUsuario.email"
 						placeholder="e-mail" class="input-xlarge" required="true" />
 					<p class="help-block text-muted">Por favor introduzca el E-mail</p>
 				</div>
@@ -69,7 +61,7 @@
 				<!-- Password-->
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
-					<form:input type="password" id="password" path="password"
+					<form:input type="password" id="password" path="datosUsuario.password"
 						name="password" placeholder="Password" 
 						required="true" />
 					<p class="help-block text-muted">El password debe contener al menos 4
@@ -89,7 +81,7 @@
 				</div>
 			</div>
 			
-			<div class="ciff-class control-group d-none">
+			<div class="ciff-class control-group">
 				<!-- CIF -->
 				<label class="control-label" for="cif">CIF
 					</label>

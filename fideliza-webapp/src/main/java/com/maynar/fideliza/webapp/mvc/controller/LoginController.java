@@ -2,21 +2,20 @@ package com.maynar.fideliza.webapp.mvc.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maynar.fideliza.bom.Cliente;
+import com.maynar.fideliza.bom.Operador;
 import com.maynar.fideliza.bom.Usuario;
 import com.maynar.fideliza.services.ILoginService;
 import com.maynar.fideliza.webapp.beans.ClienteBean;
+import com.maynar.fideliza.webapp.beans.OperadorBean;
 import com.maynar.fideliza.webapp.beans.UsuarioBean;
 
 @Controller
@@ -24,10 +23,16 @@ public class LoginController {
 
 	@Autowired
 	private ILoginService loginService;
+
 	
 	@ModelAttribute("cliente")
 	public ClienteBean cliente() {
 		return new ClienteBean();
+	}
+	
+	@ModelAttribute("operador")
+	public OperadorBean operador() {
+		return new OperadorBean();
 	}
 	
 	@RequestMapping(path="/login", method = RequestMethod.GET)
@@ -37,29 +42,27 @@ public class LoginController {
 	
 	
 	@RequestMapping(path="/inicio", method = RequestMethod.POST)
-	public String procesarFormulario(@ModelAttribute UsuarioBean usuario, HttpServletRequest request) {
+	public String procesarFormulario(@ModelAttribute UsuarioBean usuario, HttpSession session) {
 		String returnView = "login";
 		
 		Usuario user = new Usuario(usuario.getUsuario(), usuario.getPassword(), usuario.getEmail());
 		user = loginService.login(user);
 		if(user!=null) {
-			returnView = "inicio";
+			if(user.getTipo()!=null&&user.getTipo().equals("cliente")) {//devolvemos vista de cliente
+				returnView = "inicio";
+			}else {
+				returnView = "inicioOperador";
+			}
+			
 			usuario.setUsuario(user.getUsuario());
 			usuario.setId(user.getId());
-			request.getSession().setAttribute("usuario", usuario);
+			usuario.setTipo(user.getTipo());
+			usuario.setPassword("");
+			session.setAttribute("usuario", usuario);
 		}
 		return returnView;
 	}
 	
-	/**
-	 * Consultar puntos
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(path="/consultaPuntos", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody public String consultarPuntos() {
-		return "{\"puntos\":100}";
-	}
 	
 	@RequestMapping(path="/registro", method = RequestMethod.GET)
 	public String iniciarRegistro(Map<String,Object> model) {
@@ -79,9 +82,9 @@ public class LoginController {
 		user = loginService.register(user);
 		if(user!=null) {
 			Cliente clienteEntity = new Cliente();
-			clienteEntity.setId_usuario(user.getId());
-			clienteEntity.setPuntos(cliente.getPuntos());
+			clienteEntity.setId_usuario(user.getEmail());
 			loginService.registrarCliente(clienteEntity);
+			cliente.getDatosUsuario().setTipo("cliente");
 			session.setAttribute("usuario", cliente.getDatosUsuario());
 			returnView = "inicio";
 		}
@@ -90,19 +93,29 @@ public class LoginController {
 	
 	@RequestMapping(path="/registroOperador", method = RequestMethod.GET)
 	public String registroOperador(Map<String,Object> model) {
-		return "registroCliente";
+		return "registroOperador";
 	}
 	
 	@RequestMapping(path="/registroOperador", method = RequestMethod.POST)
-	public String registroOperador(@ModelAttribute UsuarioBean usuario) {
+	public String registroOperador(@ModelAttribute OperadorBean operador, HttpSession session) {
 		String returnView = "login";
-		
-		Usuario user = new Usuario(usuario.getUsuario(), usuario.getPassword(), usuario.getEmail());
+		operador.getDatosUsuario().setTipo("operador");
+		Usuario user = new Usuario(operador.getDatosUsuario().getUsuario(), operador.getDatosUsuario().getPassword(), operador.getDatosUsuario().getEmail(),operador.getDatosUsuario().getTipo());
 		user = loginService.register(user);
 		if(user!=null) {
-			returnView = "inicio";
+			Operador operadorEntity = new Operador();
+			operadorEntity.setId_usuario(user.getId());
+			operadorEntity.setCif(operador.getCif());
+			loginService.registrarOperador(operadorEntity);
+			session.setAttribute("usuario", operador.getDatosUsuario());
+			returnView = "inicioOperador";
 		}
 		return returnView;
 	}
 	
+	@RequestMapping(path="/logout", method = RequestMethod.GET)
+	public String logout(Map<String,Object> model, HttpSession sesion) {
+		sesion.removeAttribute("usuario");
+		return "login";
+	}
 }

@@ -35,9 +35,15 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 	}
 
 
-	public Cliente crearCliente(Cliente cliente) {
-		mongoTemplate.save(cliente);
-		return cliente;
+//	public Cliente crearCliente(Cliente cliente) {
+//		mongoTemplate.save(cliente);
+//		return cliente;
+//	}
+
+
+	public Usuario obtenerUsuarioEmail(String email) {
+		Query query = new Query(Criteria.where("email").is(email));
+        return mongoTemplate.findOne(query, Usuario.class, COLLECTION_USUARIO);
 	}
 
 }

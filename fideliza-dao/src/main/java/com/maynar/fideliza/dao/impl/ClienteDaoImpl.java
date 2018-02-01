@@ -20,11 +20,11 @@ public class ClienteDaoImpl implements IClienteDao {
     final String COLLECTION_CLIENTE = "cliente";
 
 	public Cliente obtenerCliente(Cliente cliente) {
-		Query query = new Query(Criteria.where("id_usuario").is(cliente.getId()));
+		Query query = new Query(Criteria.where("id_usuario").is(cliente.getId_usuario()));
         return mongoTemplate.findOne(query, Cliente.class, COLLECTION_CLIENTE);
 	}
 
-	public Cliente crearCliente(Cliente cliente) {
+	public Cliente guardarCliente(Cliente cliente) {
 		mongoTemplate.save(cliente);
 		return cliente;
 	}
@@ -33,6 +33,6 @@ public class ClienteDaoImpl implements IClienteDao {
 		Query query = new Query(Criteria.where("id_usuario").is(user.getId()));
         return mongoTemplate.findOne(query, Cliente.class, COLLECTION_CLIENTE);
 	}
-    
+
 
 }

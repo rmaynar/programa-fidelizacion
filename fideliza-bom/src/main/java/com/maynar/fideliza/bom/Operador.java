@@ -1,15 +1,11 @@
 package com.maynar.fideliza.bom;
 
-public class Cliente {
+public class Operador {
 
 	private String id;
-	//el email del usuario
 	private String id_usuario;
-	private String puntos = "0";
+	private String cif;
 
-	public String getPuntos() {
-		return puntos;
-	}
 
 	public String getId() {
 		return id;
@@ -27,18 +23,22 @@ public class Cliente {
 		this.id_usuario = id_usuario;
 	}
 
-	public void setPuntos(String puntos) {
-		this.puntos = puntos;
+
+	public String getCif() {
+		return cif;
 	}
 
-	public Cliente(String id) {
+	public void setCif(String cif) {
+		this.cif = cif;
+	}
+
+	public Operador(String id) {
 		super();
 		this.id = id;
 	}
 
-	public Cliente() {
+	public Operador() {
 		super();
-		this.puntos = "0";
 	}
 	
 	

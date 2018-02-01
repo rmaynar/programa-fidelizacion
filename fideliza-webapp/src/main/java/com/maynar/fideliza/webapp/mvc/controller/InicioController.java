@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maynar.fideliza.bom.Cliente;
 import com.maynar.fideliza.bom.Usuario;
@@ -22,35 +24,52 @@ public class InicioController {
 
 	@Autowired
 	private IOfertasService ofertasService;
-	
+
 	@Autowired
 	private IClienteService clienteService;
-	
-	@RequestMapping(path="/ofertas/listado", method = RequestMethod.GET)
-	public String  listarOfertas(Model model, HttpSession sesion) {
-		/** Esto lo realiza el ConfiguracionControladores
-		//servicio.obtenerGeneros();
-		model.put("genero", new String[] {"Masculino","Femenino"});
-		**/
-		UsuarioBean usuario = (UsuarioBean)sesion.getAttribute("usuario");
-		Cliente cliente = clienteService.obtenerCliente(new Usuario(usuario.getId()));
-//		model.addAttribute("lasofertas", new String[] {"Oferta1","Oferta2","Oferta3"});
-		model.addAttribute("puntos", cliente.getPuntos());
-		model.addAttribute("ofertas", ofertasService.consultarTodas());
-//		model.put("ofertas", ofertasService.consultarTodas());
-		return "ofertas";
+
+	/**
+	 * Consultar puntos
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(path="/consultaPuntos", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody public String consultarPuntos(HttpSession session) {
+		UsuarioBean usuario = (UsuarioBean)session.getAttribute("usuario");
+//		Usuario user = new Usuario(usuario.getId());
+		Cliente cli = new Cliente();
+		cli.setId_usuario(usuario.getEmail());
+		cli = clienteService.obtenerCliente(cli);
+		return "{\"puntos\":"+cli.getPuntos()+"}";
 	}
-	 
-	@RequestMapping(path="/inicio", method = RequestMethod.GET)
-	public String iniciarMenu(Map<String,Object> model, HttpServletRequest request) {
-		//comprobamos que se haya logado el usuario
-		UsuarioBean usuarioLogueado = (UsuarioBean)request.getSession().getAttribute("usuario");
-		if(usuarioLogueado!=null) {
-			return "inicio";
-		}else {
+	
+	@RequestMapping(path = "/ofertas/listado", method = RequestMethod.GET)
+	public String listarOfertas(Model model, HttpSession sesion) {
+		UsuarioBean usuario = (UsuarioBean) sesion.getAttribute("usuario");
+		// comprobamos que se haya logado el usuario
+		if (usuario != null) {
+			Cliente cliente = new Cliente();
+			cliente.setId_usuario(usuario.getEmail());
+			cliente = clienteService.obtenerCliente(cliente);
+			model.addAttribute("puntos", cliente.getPuntos());
+			model.addAttribute("ofertas", ofertasService.consultarTodas());
+			return "ofertas";
+		} else {
 			return "login";
 		}
 		
 	}
-	
+
+	@RequestMapping(path = "/inicio", method = RequestMethod.GET)
+	public String iniciarMenu(Map<String, Object> model, HttpServletRequest request) {
+		// comprobamos que se haya logado el usuario
+		UsuarioBean usuarioLogueado = (UsuarioBean) request.getSession().getAttribute("usuario");
+		if (usuarioLogueado != null) {
+			return "inicio";
+		} else {
+			return "login";
+		}
+
+	}
+
 }

@@ -7,5 +7,5 @@ import com.maynar.fideliza.bom.Usuario;
 public interface IClienteDao {
 	public Cliente obtenerCliente(Cliente cliente);
 	public Cliente obtenerClienteUsuario(Usuario user);
-	public Cliente crearCliente(Cliente cliente);
+	public Cliente guardarCliente(Cliente cliente);
 }

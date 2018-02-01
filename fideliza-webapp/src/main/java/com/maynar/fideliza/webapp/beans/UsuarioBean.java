@@ -6,6 +6,7 @@ public class UsuarioBean {
 	private String usuario;
 	private String password;
 	private String email;
+	private String tipo;
 	public String getUsuario() {
 		return usuario;
 	}
@@ -29,6 +30,12 @@ public class UsuarioBean {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }
