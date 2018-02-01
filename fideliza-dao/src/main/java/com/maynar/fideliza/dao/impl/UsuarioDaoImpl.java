@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.maynar.fideliza.bom.Cliente;
 import com.maynar.fideliza.bom.Usuario;
 import com.maynar.fideliza.dao.IUsuarioDao;
 @Service
@@ -18,7 +17,6 @@ public class UsuarioDaoImpl implements IUsuarioDao {
     MongoTemplate mongoTemplate;
  
     final String COLLECTION_USUARIO = "usuario";
-    final String COLLECTION_CLIENTE = "cliente";
 	
 	
 	public Usuario obtenerUsuario(Usuario usuario) {
@@ -33,12 +31,6 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 		mongoTemplate.save(usuario);
 		return usuario;
 	}
-
-
-//	public Cliente crearCliente(Cliente cliente) {
-//		mongoTemplate.save(cliente);
-//		return cliente;
-//	}
 
 
 	public Usuario obtenerUsuarioEmail(String email) {

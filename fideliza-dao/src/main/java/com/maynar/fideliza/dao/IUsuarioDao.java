@@ -7,5 +7,4 @@ public interface IUsuarioDao {
 	public Usuario obtenerUsuario(Usuario usuario);
 	public Usuario obtenerUsuarioEmail(String email);
 	public Usuario crearUsuario(Usuario usuario);
-//	public Cliente crearCliente(Cliente cliente);
 }

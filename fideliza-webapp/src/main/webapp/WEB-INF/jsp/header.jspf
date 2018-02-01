@@ -31,7 +31,7 @@
 			    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Bienvenido, <%=user.getUsuario()%>&nbsp;
 			    <span class="caret"></span></a>
 			    <ul class="dropdown-menu">
-			      <li><a class="dropdown-item" href="logout">Logout</a></li>
+			      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/logout">Logout</a></li>
 			    </ul>
 			  </div>
 			

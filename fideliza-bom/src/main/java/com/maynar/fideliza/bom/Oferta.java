@@ -1,7 +1,5 @@
 package com.maynar.fideliza.bom;
 
-import java.util.Date;
-
 public class Oferta {
 	private String id;
 	private String descripcion;

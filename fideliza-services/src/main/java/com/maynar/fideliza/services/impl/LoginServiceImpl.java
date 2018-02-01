@@ -24,11 +24,6 @@ public class LoginServiceImpl implements ILoginService{
 		return user;
 	}
 
-	public Usuario logout(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Usuario register(Usuario usuario) {
 		Usuario user = usuarioDao.crearUsuario(usuario);
 		return user;
